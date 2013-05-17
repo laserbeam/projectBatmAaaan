@@ -29,6 +29,7 @@ final float WAVE_CHARGE_FACTOR = 0.55; // multiplied to wave energy when chargin
 final float WAVE_DISCHARGE_RATE = 0.009; // the rate at which game objects recharge or discharge
 // AUDIO
 final boolean AUDIO_INPUT_ENABLED = true;
+final boolean XBOX_ACTIONS_CONTROLLER = false; // DO NOT CHANGE this now, there is no gamepad mode anymore, but this is still used in logic somewhere, until cleanup takes place this should stay here.
 final boolean AUDIO_OUTPUT_ENABLED = false; // This is not used at the moment
 // MICROPHONE
 float MIN_AMPLITUDE_THRESHOLD = 0.009;
@@ -37,8 +38,6 @@ float MIN_PITCH = 130;
 float MAX_PITCH = 260;
 // MISC
 final int DEFAULT_FREQUENCY = 440;
-final boolean XBOX_CONTROLLER = false;
-final boolean XBOX_ACTIONS_CONTROLLER = false;
 final boolean MOUSE_CONTROLLER = true;
 final int WAVE_EMIT_DELAY = 10;
 final boolean LOG_METRICS = false; // This was used only for testing, just ignore.
@@ -79,12 +78,6 @@ void setup() {
   StateManager.pushState( currentState );
   noFill();
   InputManager.addController( new KeyboardController() );
-  if ( XBOX_CONTROLLER ) {
-    InputManager.addController( new XboxMovementController() );
-  }
-  if ( XBOX_ACTIONS_CONTROLLER ) {
-    InputManager.addController( new XboxActionsController() );
-  }
   if ( AUDIO_INPUT_ENABLED ) {
     InputManager.addController( new MicrophoneController() );
   }
@@ -137,7 +130,7 @@ void keyReleased() {
 void keyPressed() {
   // EVIL HACK! take control of the escape key and stop processing from exiting.
   if (key == ESC) key += 2000;
-  if (key == 'x') InputManager.addEvent( new InputEvent( EV_ACTION_TRIGGER, WAVE_MAX_ENERGY ));
+  // if (key == 'x') InputManager.addEvent( new InputEvent( EV_ACTION_TRIGGER, WAVE_MAX_ENERGY ));
   InputManager.keyPressed();
 }
 

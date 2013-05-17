@@ -5,8 +5,8 @@ class MetricsLogger {
     if (!LOG_METRICS) return;
     int s = second();
     int m = minute();
-    int h = hour()
-;    int d = day();
+    int h = hour();
+    int d = day();
     int mon = month();
     String date = String.valueOf(mon)+String.valueOf(d)+String.valueOf(h)+String.valueOf(m)+String.valueOf(s);
     _output = createWriter(METRICS_PATH + "session" + date + ".csv");

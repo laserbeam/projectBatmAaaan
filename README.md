@@ -33,4 +33,4 @@ The code is written in Processing, go to the homepage for details http://process
 
 You will also need to get proControll http://creativecomputing.cc/p5libs/procontroll/ and install it following this guide: http://wiki.processing.org/w/How_to_Install_a_Contributed_Library
 
-The code is not amazingly pretty and if the game will ever be a full commercial game it will suffer some heavy refactoring, and maybe will be ported to MOAI or some other engine.
+The code is not amazingly pretty and if the game will ever be a full commercial game it will suffer some heavy refactoring, and maybe will be ported to MOAI or some other engine. Start in Batman.pde and have fun!

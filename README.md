@@ -29,7 +29,7 @@ Don't slam too hard into sharp corners, the current way of treating collisions d
 About the code
 --------------
 
-The code is written in Processing, go to the homepage for details http://processing.org
+The code is written in Processing (32 bit version), go to the homepage for details http://processing.org
 
 You will also need to get proControll http://creativecomputing.cc/p5libs/procontroll/ and install it following this guide: http://wiki.processing.org/w/How_to_Install_a_Contributed_Library
 

@@ -66,6 +66,21 @@ static class InputManager {
   }
 
   /**
+   * Key press event. This method is triggered when a key is pressed and passed
+   * on to all KeyboardControllers that support the method.
+   *
+   * This works similar to message passing instead of method calling.
+   */
+  static void keyPressed() {
+    for ( int i = 0; i < controllers.size(); i++ ) {
+      try {
+        KeyboardController c = (KeyboardController) controllers.get( i );
+        c.keyPressed();
+      } catch (Exception e) {}
+    }
+  }
+
+  /**
    * Empties the event queue. This should be called when States are changed to flush
    * any pending events that should have been processed in the previous State.
    */

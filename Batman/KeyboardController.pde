@@ -5,25 +5,14 @@
  * WARNIGN: Processing limitation, multiple keys can not be pressed at once!
  */
 class KeyboardController extends Controller {
-  ControllIO controlIO = null;
-  ControllDevice keyboard;
-  ControllButton _UP, _DOWN, _LEFT, _RIGHT;
+  // ControllDevice keyboard;
+  boolean _UP, _DOWN, _LEFT, _RIGHT;
 
   KeyboardController() {
-    controlIO = ControllIO.getInstance(Batman.this);
-    for ( int i = 0; i < controlIO.getNumberOfDevices(); ++i ) {
-      ControllDevice device = controlIO.getDevice(i);
-      String s = device.getName();
-      if ( match(s, "(k|K)eyboard") != null ) {
-        keyboard = controlIO.getDevice(i);
-        break;
-      }
-    }
-    keyboard.printButtons();
-    _UP = keyboard.getButton("W");
-    _LEFT = keyboard.getButton("A");
-    _DOWN = keyboard.getButton("S");
-    _RIGHT = keyboard.getButton("D");
+    _UP = false;
+    _LEFT = false;
+    _DOWN = false;
+    _RIGHT = false;
   }
 
   /**
@@ -34,10 +23,10 @@ class KeyboardController extends Controller {
     
     float dirX = 0;
     float dirY = 0;
-    if (_UP.pressed()) dirY -= 5;
-    if (_DOWN.pressed()) dirY += 5;
-    if (_LEFT.pressed()) dirX -= 5;
-    if (_RIGHT.pressed()) dirX += 5;
+    if (_UP) dirY -= 5;
+    if (_DOWN) dirY += 5;
+    if (_LEFT) dirX -= 5;
+    if (_RIGHT) dirX += 5;
 
     if ( dirX == 0 && dirY == 0 ) return;
     if ( dirX != 0 && dirY != 0 ) {
@@ -57,10 +46,47 @@ class KeyboardController extends Controller {
       case ESC:
         InputManager.addEvent( new InputEvent( EV_END_STATE ));
         break;
+      case 'w':
+      case 'W':
+        _UP = false;
+        break;
+      case 's':
+      case 'S':
+        _DOWN = false;
+        break;
+      case 'a':
+      case 'A':
+        _LEFT = false;
+        break;
+      case 'd':
+      case 'D':
+        _RIGHT = false;
+        break;
     }
   }
 
-  void close() {
-    keyboard.close();
+  void keyPressed() {
+    switch (key) {
+      case 'w':
+      case 'W':
+        _UP = true;
+        break;
+      case 's':
+      case 'S':
+        _DOWN = true;
+        break;
+      case 'a':
+      case 'A':
+        _LEFT = true;
+        break;
+      case 'd':
+      case 'D':
+        _RIGHT = true;
+        break;
+    }
   }
+
+  // void close() {
+  //   keyboard.close();
+  // }
 };

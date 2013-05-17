@@ -5,7 +5,7 @@ final int SCREEN_HEIGHT = 600; // Only used in windowed mode
 // Use width and height to get screen dimaensions.
 // Those variables are defined by Processsing
 float SCALE_RATIO;
-final boolean FULLSCREEN_MODE = true;
+final boolean FULLSCREEN_MODE = false;
 final boolean DEBUG_MODE = false;
 final boolean LOW_QUALITY = false;
 final float FRAME_RATE = 30; // WARNING! changing this affects gameplay speed!
@@ -138,6 +138,7 @@ void keyPressed() {
   // EVIL HACK! take control of the escape key and stop processing from exiting.
   if (key == ESC) key += 2000;
   if (key == 'x') InputManager.addEvent( new InputEvent( EV_ACTION_TRIGGER, WAVE_MAX_ENERGY ));
+  InputManager.keyPressed();
 }
 
 void exitGame() {
